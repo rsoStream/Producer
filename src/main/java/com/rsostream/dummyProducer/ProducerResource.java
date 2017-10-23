@@ -25,20 +25,22 @@ public class ProducerResource {
     @POST
     @Path("create")
     public Response createDummyUsers() {
-        System.out.println("Creating dummy users.");
+        if (DataBase.isEmpty()) {
+            System.out.println("Creating dummy users.");
 
-        Movie m = new Movie();
-        m.setId(0);
-        m.setName("Blade runner 2049");
-        m.setGenre("SciFi");
+            Movie m = new Movie();
+            m.setId(0);
+            m.setName("Blade runner 2049");
+            m.setGenre("SciFi");
 
-        Movie m1 = new Movie();
-        m1.setId(1);
-        m1.setName("Blade runner");
-        m1.setGenre("SciFi");
+            Movie m1 = new Movie();
+            m1.setId(1);
+            m1.setName("Blade runner");
+            m1.setGenre("SciFi");
 
-        DataBase.addMovie(m);
-        DataBase.addMovie(m1);
+            DataBase.addMovie(m);
+            DataBase.addMovie(m1);
+        }
 
         return Response.ok(DataBase.getMovies()).build();
     }

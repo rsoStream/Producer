@@ -31,5 +31,9 @@ public class DataBase {
             }
         }
     }
+
+    public static boolean isEmpty() {
+        return movies.isEmpty();
+    }
 }
 
