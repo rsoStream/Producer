@@ -12,13 +12,13 @@ import java.util.List;
 public class ProducerResource {
     @GET
     public Response getAllUser() {
-        List<User> users = DataBase.getUsers();
+        List<Movie> users = DataBase.getMovies();
         return Response.ok(users).build();
     }
 
     @POST
-    public Response createNewUser(User user) {
-        DataBase.addUser(user);
+    public Response createNewUser(Movie m) {
+        DataBase.addMovie(m);
         return Response.ok(true).build();
     }
 
@@ -27,26 +27,20 @@ public class ProducerResource {
     public Response createDummyUsers() {
         System.out.println("Creating dummy users.");
 
-        User u = new User();
-        u.setId(0);
-        u.setFirstName("Luka");
-        u.setLastName("Podgorsek");
+        Movie m = new Movie();
+        m.setId(0);
+        m.setName("Blade runner 2049");
+        m.setGenre("SciFi");
 
-        User u1 = new User();
-        u1.setId(1);
-        u1.setFirstName("Dummy");
-        u1.setLastName("User1");
+        Movie m1 = new Movie();
+        m1.setId(1);
+        m1.setName("Blade runner");
+        m1.setGenre("SciFi");
 
-        User u2 = new User();
-        u2.setId(2);
-        u2.setFirstName("Dummy");
-        u2.setLastName("User2");
+        DataBase.addMovie(m);
+        DataBase.addMovie(m1);
 
-        DataBase.addUser(u);
-        DataBase.addUser(u1);
-        DataBase.addUser(u2);
-
-        return Response.ok(DataBase.getUsers()).build();
+        return Response.ok(DataBase.getMovies()).build();
     }
 }
 
