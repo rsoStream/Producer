@@ -37,9 +37,19 @@ public class ProducerResource {
     }
 
     @GET
-    public Response getUsers() {
+    public Response getMovies() {
         List<Movie> users = DataBase.getMovies();
         return Response.ok(users).build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response getMovieById(
+            @PathParam("id") int id
+    ) {
+        System.out.println(id);
+        Movie movie = DataBase.getMovie(id);
+        return Response.ok(movie).build();
     }
 
     @POST
@@ -50,7 +60,7 @@ public class ProducerResource {
 
     @POST
     @Path("create")
-    public Response createDummyUsers() {
+    public Response createDummyMovies() {
         if (DataBase.isEmpty()) {
             System.out.println("Creating dummy movies.");
 
