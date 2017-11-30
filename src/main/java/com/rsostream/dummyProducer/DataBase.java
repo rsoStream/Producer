@@ -36,4 +36,3 @@ public class DataBase {
         return movies.isEmpty();
     }
 }
-

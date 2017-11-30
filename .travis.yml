@@ -6,10 +6,13 @@ services:
 language: java
 dist: trusty
 
+env:
+  - DOCKER_IMAGE=rsostream/producer:0.01
+
 script:
   - mvn clean package -U
-  - docker build -t rsostream/producer .
+  - docker build -t "$DOCKER_IMAGE" .
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push rsostream/producer
+  - docker push "$DOCKER_IMAGE"
